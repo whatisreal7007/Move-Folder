@@ -1,0 +1,58 @@
+#This script will display a folder dialogue to choose a "Clients" folder
+#It will then look at what the first letter of each folder, and copy that 
+#folder to it's new home.
+
+#create misc variables
+$datetime = Get-Date -Format "yyyyMMddhhmmss";
+$Copydestination = "Insert Copy Destination Here"
+
+Function Get-FolderName()
+{
+[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+
+$OpenFolderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
+$OpenFolderDialog.ShowDialog() | Out-Null
+$OpenFolderDialog.SelectedPath 
+
+get-childitem -path $OpenFolderDialog.SelectedPath -filter *.* | foreach-object -process { 
+	#get the first letter of the folder name
+	$first_letter = ($_.name.Substring(0,1))
+
+	#if the first letter of the folder is A, COPY the folder and its contents to the new folder
+	if($first_letter -eq "a") {Copy-item $_.FullName -destination "$Copydestination\A-B" -recurse}
+
+	#if the first letter of the folder is B, COPY the folder and its contents to the new folder
+	elseif($first_letter -eq "b") {Copy-item $_.FullName -destination "$Copydestination\A-B" -recurse}
+	elseif($first_letter -eq "c") {Copy-item $_.FullName -destination "$Copydestination\C-D" -recurse}
+    	elseif($first_letter -eq "d") {Copy-item $_.FullName -destination "$Copydestination\C-D" -recurse}
+    	elseif($first_letter -eq "e") {Copy-item $_.FullName -destination "$Copydestination\E-F" -recurse}
+    	elseif($first_letter -eq "f") {Copy-item $_.FullName -destination "$Copydestination\E-F" -recurse}
+	elseif($first_letter -eq "g") {Copy-item $_.FullName -destination "$Copydestination\G-H" -recurse}
+    	elseif($first_letter -eq "h") {Copy-item $_.FullName -destination "$Copydestination\G-H" -recurse}
+    	elseif($first_letter -eq "i") {Copy-item $_.FullName -destination "$Copydestination\I-J" -recurse}
+    	elseif($first_letter -eq "j") {Copy-item $_.FullName -destination "$Copydestination\I-J" -recurse}
+	elseif($first_letter -eq "k") {Copy-item $_.FullName -destination "$Copydestination\K-L" -recurse}
+    	elseif($first_letter -eq "l") {Copy-item $_.FullName -destination "$Copydestination\K-L" -recurse}
+    	elseif($first_letter -eq "m") {Copy-item $_.FullName -destination "$Copydestination\M-N" -recurse}
+    	elseif($first_letter -eq "n") {Copy-item $_.FullName -destination "$Copydestination\M-N" -recurse}
+	elseif($first_letter -eq "o") {Copy-item $_.FullName -destination "$Copydestination\O-P" -recurse}
+    	elseif($first_letter -eq "p") {Copy-item $_.FullName -destination "$Copydestination\O-P" -recurse}
+    	elseif($first_letter -eq "q") {Copy-item $_.FullName -destination "$Copydestination\Q-R" -recurse}
+    	elseif($first_letter -eq "r") {Copy-item $_.FullName -destination "$Copydestination\Q-R" -recurse}
+	elseif($first_letter -eq "s") {Copy-item $_.FullName -destination "$Copydestination\S-T" -recurse}
+    	elseif($first_letter -eq "t") {Copy-item $_.FullName -destination "$Copydestination\S-T" -recurse}
+    	elseif($first_letter -eq "u") {Copy-item $_.FullName -destination "$Copydestination\U-V" -recurse}
+    	elseif($first_letter -eq "v") {Copy-item $_.FullName -destination "$Copydestination\U-V" -recurse}
+	elseif($first_letter -eq "w") {Copy-item $_.FullName -destination "$Copydestination\W-X" -recurse}
+    	elseif($first_letter -eq "x") {Copy-item $_.FullName -destination "$Copydestination\W-X" -recurse}
+    	elseif($first_letter -eq "y") {Copy-item $_.FullName -destination "$Copydestination\Y-Z" -recurse}
+    	elseif($first_letter -eq "z") {Copy-item $_.FullName -destination "$Copydestination\Y-Z" -recurse}
+	
+	#and just keep on going down the alphabet
+	#elseif... (and so on)
+								
+	}
+} #end function Get-FolderName
+
+# *** Entry Point to Script ***
+Get-FolderName 
